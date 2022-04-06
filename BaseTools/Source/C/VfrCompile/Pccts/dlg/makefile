@@ -116,8 +116,10 @@ PCCTS_H=../h
 #
 ifeq ($(CXX), llvm)
 BUILD_CC?=$(CLANG_BIN)clang
+BUILD_LFLAGS="-fuse-ld=lld"
 else
 BUILD_CC?=cc
+BUILD_LFLAGS=
 endif
 COPT=-O
 ANTLR=${BIN_DIR}/antlr
@@ -130,7 +132,7 @@ OBJ = dlg_p.o dlg_a.o main.o err.o set.o support.o output.o \
         relabel.o automata.o
 
 $(BIN_DIR)/dlg : $(OBJ) $(SRC)
-		$(BUILD_CC) $(BUILD_CFLAGS) -o $(BIN_DIR)/dlg $(OBJ)
+		$(BUILD_CC) $(BUILD_CFLAGS) $(BUILD_LFLAGS) -o $(BIN_DIR)/dlg $(OBJ)
 
 SRC = dlg_p.c dlg_a.c main.c err.c $(SET)/set.c support.c output.c \
         relabel.c automata.c
