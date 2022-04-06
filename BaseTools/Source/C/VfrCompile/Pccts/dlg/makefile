@@ -125,6 +125,7 @@ endif
 CLANG := $(findstring clang,$(shell $(CC) --version))
 ifneq ($(CLANG),)
 CC?=$(CLANG_BIN)clang
+LDFLAGS="-fuse-ld=lld"
 else ifeq ($(origin CC),default)
 CC=gcc
 endif
@@ -139,7 +140,7 @@ OBJ = dlg_p.o dlg_a.o main.o err.o set.o support.o output.o \
         relabel.o automata.o
 
 $(BIN_DIR)/dlg : $(OBJ) $(SRC)
-		$(CC) $(CFLAGS) -o $(BIN_DIR)/dlg $(OBJ)
+		$(CC) $(CFLAGS) $(LDFLAGS) -o $(BIN_DIR)/dlg $(OBJ)
 
 SRC = dlg_p.c dlg_a.c main.c err.c $(SET)/set.c support.c output.c \
         relabel.c automata.c

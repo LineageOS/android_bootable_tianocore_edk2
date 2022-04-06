@@ -171,6 +171,10 @@ endif
 #
 #   UNIX  (default)
 #
+CLANG:=$(shell $(CC) --version | grep clang)
+ifneq ($(CLANG),)
+LDFLAGS="-fuse-ld=lld"
+endif
 COPT=-O
 ANTLR=${BIN_DIR}/antlr
 DLG=${BIN_DIR}/dlg
@@ -186,7 +190,7 @@ OBJ=antlr.o scan.o err.o bits.o build.o fset2.o fset.o gen.o  \
         globals.o hash.o lex.o main.o misc.o set.o pred.o egman.o mrhoist.o fcache.o
 
 $(BIN_DIR)/antlr : $(OBJ) $(SRC)
-		$(CC) $(CFLAGS) -o $(BIN_DIR)/antlr $(OBJ)
+		$(CC) $(CFLAGS) $(LDFLAGS) -o $(BIN_DIR)/antlr $(OBJ)
 
 # what files does PCCTS generate (both ANTLR and DLG)
 PCCTS_GEN=antlr.c scan.c err.c tokens.h mode.h parser.dlg stdpccts.h remap.h
