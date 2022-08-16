@@ -2454,7 +2454,7 @@ RELEASE_GCC5_AARCH64_DLINK_XIPFLAGS = -z common-page-size=0x20
 ####################################################################################
 *_CLANG35_*_*_FAMILY             = GCC
 
-*_CLANG35_*_MAKE_PATH            = make
+*_CLANG35_*_MAKE_PATH            = ENV(CLANG_HOST_BIN)make
 *_CLANG35_*_*_DLL                = ENV(CLANG35_DLL)
 *_CLANG35_*_ASL_PATH             = DEF(UNIX_IASL_BIN)
 
@@ -2534,7 +2534,7 @@ RELEASE_CLANG35_AARCH64_CC_FLAGS = DEF(CLANG35_AARCH64_CC_FLAGS) $(ARCHCC_FLAGS)
 #
 ####################################################################################
 *_CLANG38_*_*_FAMILY                = GCC
-*_CLANG38_*_MAKE_PATH               = make
+*_CLANG38_*_MAKE_PATH               = ENV(CLANG_HOST_BIN)make
 *_CLANG38_*_*_DLL                   = ENV(CLANG38_DLL)
 *_CLANG38_*_ASL_PATH                = DEF(UNIX_IASL_BIN)
 
