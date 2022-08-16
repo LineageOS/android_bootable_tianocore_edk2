@@ -315,7 +315,8 @@ class Edk2ToolsBuild(BaseAbstractInvocable):
             cpu_count = self.GetCpuThreads()
 
             output_stream = edk2_logging.create_output_stream()
-            ret = RunCmd("make", f"-C .  -j {cpu_count}", workingdir=shell_env.get_shell_var("EDK_TOOLS_PATH"))
+            HostPath = os.environ.get('CLANG_HOST_BIN') or os.environ.get('GCC_HOST_BIN') or ''
+            ret = RunCmd(HostPath + "make", f"-C .  -j {cpu_count}", workingdir=shell_env.get_shell_var("EDK_TOOLS_PATH"))
             edk2_logging.remove_output_stream(output_stream)
             problems = edk2_logging.scan_compiler_output(output_stream)
             for level, problem in problems:

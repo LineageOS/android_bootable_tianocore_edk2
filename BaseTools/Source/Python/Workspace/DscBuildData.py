@@ -3053,7 +3053,8 @@ class DscBuildData(PlatformBuildClassObject):
                     else:
                         MakeCommand = 'make -f %s' % (MakeFileName)
             else:
-                MakeCommand = 'make -f %s' % (MakeFileName)
+                HostPath = os.environ.get('CLANG_HOST_BIN') or os.environ.get('GCC_HOST_BIN') or ''
+                MakeCommand = HostPath + 'make -f %s' % (MakeFileName)
             returncode, StdOut, StdErr = DscBuildData.ExecuteCommand (MakeCommand)
             Messages = StdErr
 
