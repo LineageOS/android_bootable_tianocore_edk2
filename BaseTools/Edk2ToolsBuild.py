@@ -143,7 +143,8 @@ class Edk2ToolsBuild(BaseAbstractInvocable):
 
         elif self.tool_chain_tag.lower().startswith("gcc"):
             cpu_count = self.GetCpuThreads()
-            ret = RunCmd("make", f"-C .  -j {cpu_count}", workingdir=shell_env.get_shell_var("EDK_TOOLS_PATH"))
+            HostPath = os.environ.get('CLANG_HOST_BIN') or os.environ.get('GCC_HOST_BIN') or ''
+            ret = RunCmd(HostPath + "make", f"-C .  -j {cpu_count}", workingdir=shell_env.get_shell_var("EDK_TOOLS_PATH"))
             if ret != 0:
                 raise Exception("Failed to build.")
 

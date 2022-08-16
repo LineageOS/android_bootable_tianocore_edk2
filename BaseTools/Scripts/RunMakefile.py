@@ -150,7 +150,8 @@ if __name__ == '__main__':
   if sys.platform == "win32":
     CommandLine = 'nmake /f %s' % (' '.join(CommandLine))
   else:
-    CommandLine = 'make -f %s' % (' '.join(CommandLine))
+    HostPath = os.environ.get('CLANG_HOST_BIN') or os.environ.get('GCC_HOST_BIN') or ''
+    CommandLine = HostPath + 'make -f %s' % (' '.join(CommandLine))
 
   #
   # Run the makefile
