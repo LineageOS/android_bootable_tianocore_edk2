@@ -363,6 +363,7 @@ strtol (
 }
 
 /* Convert strings to an unsigned long-integer value */
+__attribute__((weak))
 unsigned long
 strtoul (
   const char  *nptr,
