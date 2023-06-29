@@ -94,7 +94,7 @@ else
 BUILD_CFLAGS = -MD -fshort-wchar -fno-strict-aliasing -fwrapv \
 -fno-delete-null-pointer-checks -Wall -Werror \
 -Wno-deprecated-declarations -Wno-stringop-truncation -Wno-restrict \
--Wno-unused-result -nostdlib -g
+-Wno-unused-result -Wno-vla-parameter -nostdlib -g
 endif
 endif
 ifeq ($(CXX), llvm)
