@@ -211,13 +211,13 @@ def get_host_arch():
             host_arch = ARCH_LOONGARCH64
         # There is a corner case for the Raspberry Pi. Sometimes it has a 64-bit
         # kernel paired with an exclusively 32-bit user mode. Check for this case.
-        if shutil.which("lsb_release") is not None:
-            res = subprocess.run(["lsb_release", "-i"], universal_newlines=True,
-                                stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
-                                check=True)
-            distributor = res.stdout.strip()
-            if distributor == "Distributor ID:\tRaspbian":
-                host_arch = ARCH_ARM
+#        if shutil.which("lsb_release") is not None:
+#            res = subprocess.run(["lsb_release", "-i"], universal_newlines=True,
+#                                stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
+#                                check=True)
+#            distributor = res.stdout.strip()
+#            if distributor == "Distributor ID:\tRaspbian":
+#                host_arch = ARCH_ARM
     print(host_arch)
     return 0
 
